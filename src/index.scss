@@ -1,0 +1,253 @@
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  font-family: 'Varela Round', 'Open Sans', sans-serif;
+  direction: rtl;
+}
+
+body, h1, h2, h3 {
+  font-weight: 300
+}
+
+body {
+  background-image: url('/app/images/background.jpg');
+  background-size: contain;
+  background-repeat: round;
+  font-family: 'Varela Round', 'Open Sans', sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: #5aadbb;
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #1f1f1f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 2;
+  #progress {
+    background: white;
+    width: 800px;
+    height: 20px;
+    margin-left: 100px;
+    border-radius: 10px;
+    .inner {
+      height: 100%;
+      background: #009688;
+      float: left;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      transition: 400ms ease-in-out;
+      &.complete {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+  #progress-label {
+    color: white;
+    margin: 0 20px;
+  }
+}
+.header-title {
+  flex: 1;
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+.header-date {
+  flex: 1;
+  text-align: right;
+  margin: 1rem;
+  white: white;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: #1c8c81;
+  color: white;
+  margin-top: 30px;
+}
+.title-h1 {
+  font-weight: 300;
+  font-size: 4rem;
+  margin: 1rem;
+}
+.title-logo {
+  height: 12rem;
+  background-color: white;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+.title-h2 {
+  font-weight: 300;
+  font-size: 2rem;
+  margin: .5rem;
+}
+
+.footer {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #1f1f1f;
+  text-align: center;
+  color: white;
+}
+.questions-h2 {
+  text-align: center;
+  background: white;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: calc(50% - 177px);
+  color: #1c8c81;
+}
+.question-h3, .answers {
+  display: inline-block;
+}
+.answers {
+  padding: 20px;
+  float: left;
+}
+.question {
+  border: 1px solid #ddd;
+  padding: 5px 20px;
+  .answers {
+    input {
+      margin-right: 20px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    span {
+      position: relative;
+      top: -23px;
+      left: 20px;
+    }
+  }
+  .question-h3 {
+    max-width: 60%;
+  }
+}
+.questions-container {
+  padding: 10px 50px;
+  max-width: 1400px;
+  margin: 0 auto;  
+  .questions {
+    box-shadow: 0 0 20px 1px #444;
+    border-radius: 10px;
+    ol {
+      background: #e8f1f9;
+      border-radius: 10px;
+    }
+    ol li:nth-child(2n) {
+      background: white;
+    }
+    ol li:first-child {
+      .question{
+        border-top-left-radius: 10px;
+      }
+    }
+    ol li:last-child {
+      border-bottom-left-radius: 10px;
+      .question{
+        border-bottom-left-radius: 10px;
+      }
+    }
+  }
+}
+input[type="submit"] {
+  margin: 10px;
+  width: calc(100% - 100px);
+  max-width: 1400px;
+  background: #3c8013;
+  padding: 15px;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+  border: 2px solid white;
+  border-radius: 10px;
+  transition: 400ms ease;
+  font-family: 'Varela Round', 'Open Sans', sans-serif;
+  &.wide {
+    margin-right: calc(50% - 700px);
+  }
+  
+}
+input[type="submit"]:hover {
+  background: #8eb239;
+}
+#result-con {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .7);
+  display: none;
+  .result {
+    position: absolute;
+    top: 50px;
+    bottom: 100px;
+    left: 100px;
+    right: 100px;
+    background: white;
+    border-radius: 10px;
+    .graph {
+      background: lightcyan;
+      width: 60%;
+      height: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      border: inset;
+      .state {
+        background: white;
+        width: calc(12.5% - 2px);
+        height: 400px;
+        float: right;
+        position: relative;
+        border: 1px solid lightgrey;
+        text-align: center;
+        .inner {
+          background: lightcoral;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          margin: 0 auto;
+        }
+        .exp {
+          padding: 5px;
+          position: relative;
+        }
+        .info {
+          position: absolute;
+          bottom: 10px;
+          margin-right: calc(50% - 12px);
+        }
+      }
+    }
+  }
+}

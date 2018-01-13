@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>שאלון</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/png" href="app/images/pear.png" />
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+  <div id="root"></div>
+  <div id="result-con">
+    <div class="result">
+      <div class="graph">
+        <div id="res-1" class="state">
+          <div class="inner"></div>
+          <div class="exp">מצבים רגשיים בלתי נעימים</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-2" class="state">
+          <div class="inner"></div>
+          <div class="exp">אי נוחות גופנית</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-3" class="state">
+          <div class="inner"></div>
+          <div class="exp">מצבים רגשיים נעימים</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-4" class="state">
+          <div class="inner"></div>
+          <div class="exp">בדיקת שליטה</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-5" class="state">
+          <div class="inner"></div>
+          <div class="exp">דחפים ופיתויים</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-6" class="state">
+          <div class="inner"></div>
+          <div class="exp">סכסוכים עם אנשים אחרים</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-7" class="state">
+          <div class="inner"></div>
+          <div class="exp">לחץ של אחרים</div>
+          <div class="info"></div>
+        </div>
+        <div id="res-8" class="state">
+          <div class="inner"></div>
+          <div class="exp">בילוי והנאה עם משפחה או חברים</div>
+          <div class="info"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+
+  $('form').submit(function () {
+    event.preventDefault();
+
+    let for_1 = [2, 16, 23, 24, 26, 33, 34, 35, 53, 55, 9, 60, 63, 64, 68, 70, 74, 76, 83, 90];
+    let for_2 = [4, 11, 40, 41, 42, 51, 70, 75, 86, 97];
+    let for_3 = [3, 14, 31, 37, 38, 65, 78, 79, 85, 98];
+    let for_4 = [5, 17, 36, 43, 45, 54, 57, 80, 81, 91];
+    let for_5 = [7, 13, 20, 29, 32, 38, 39, 47, 67, 89];
+    let for_6 = [1, 8, 9, 18, 25, 27, 28, 30, 44, 50, 52, 56, 62, 66, 77, 87, 92, 94, 99, 100];
+    let for_7 = [10, 15, 19, 22, 49, 60, 69, 73, 84, 96];
+    let for_8 = [6, 12, 21, 46, 48, 72, 82, 88, 93, 95];
+
+    let total_1 = 0;
+    let total_2 = 0;
+    let total_3 = 0;
+    let total_4 = 0;
+    let total_5 = 0;
+    let total_6 = 0;
+    let total_7 = 0;
+    let total_8 = 0;
+
+    let answers = $(this).serializeArray();
+
+    if(answers.length < 100) {
+      alert('עניתם רק על '+answers.length+' מתוך 100!');
+    } else {
+
+      var res_1 = calc(for_1, 20, total_1).toFixed(1) == 0 ? 4 : calc(for_1, 20, total_1).toFixed(1) ;
+      var res_2 = calc(for_2, 10, total_2).toFixed(1) == 0 ? 2.5 : calc(for_2, 20, total_2).toFixed(1) ;
+      var res_3 = calc(for_3, 10, total_3).toFixed(1) == 0 ? 1.3 : calc(for_3, 20, total_3).toFixed(1) ;
+      var res_4 = calc(for_4, 10, total_4).toFixed(1) == 0 ? 3.4 : calc(for_4, 20, total_4).toFixed(1) ;
+      var res_5 = calc(for_5, 10, total_5).toFixed(1) == 0 ? 0.6 : calc(for_5, 20, total_5).toFixed(1) ;
+      var res_6 = calc(for_6, 20, total_6).toFixed(1) == 0 ? 2.9 : calc(for_6, 20, total_6).toFixed(1) ;
+      var res_7 = calc(for_7, 10, total_7).toFixed(1) == 0 ? 3.7 : calc(for_7, 20, total_7).toFixed(1) ;
+      var res_8 = calc(for_8, 10, total_8).toFixed(1) == 0 ? 2.1 : calc(for_8, 20, total_8).toFixed(1) ;
+      
+      $('#res-1 .info').html(((res_1/4)*12.5).toFixed(1)+'%');
+      $('#res-2 .info').html(((res_2/4)*12.5).toFixed(1)+'%');
+      $('#res-3 .info').html(((res_3/4)*12.5).toFixed(1)+'%');
+      $('#res-4 .info').html(((res_4/4)*12.5).toFixed(1)+'%');
+      $('#res-5 .info').html(((res_5/4)*12.5).toFixed(1)+'%');
+      $('#res-6 .info').html(((res_6/4)*12.5).toFixed(1)+'%');
+      $('#res-7 .info').html(((res_7/4)*12.5).toFixed(1)+'%');
+      $('#res-8 .info').html(((res_8/4)*12.5).toFixed(1)+'%');
+      
+      $('#res-1 .inner').height(((res_1 / 4) * 100) + '%');
+      $('#res-2 .inner').height(((res_2 / 4) * 100) + '%');
+      $('#res-3 .inner').height(((res_3 / 4) * 100) + '%');
+      $('#res-4 .inner').height(((res_4 / 4) * 100) + '%');
+      $('#res-5 .inner').height(((res_5 / 4) * 100) + '%');
+      $('#res-6 .inner').height(((res_6 / 4) * 100) + '%');
+      $('#res-7 .inner').height(((res_7 / 4) * 100) + '%');
+      $('#res-8 .inner').height(((res_8 / 4) * 100) + '%');
+      
+      $('#result-con').fadeIn();
+      $('#result-con').click(function () {
+        $(this).fadeOut();
+      })
+      $('.result').click(function (event) {
+        event.stopPropagation();
+      });
+    };
+
+    function calc(for_x, questions, total_x) {
+      answers_x = answers.filter(answer => for_x.includes(Number(answer.name)));
+      answers_x.forEach(answer => {
+        total_x += Number(answer.value) / questions;
+      });
+      return total_x;
+    };
+      
+    });
+
+    $('input[type="radio"]').click(function(){
+      let answers = $('form').serializeArray();
+      $('#progress-label b').html(answers.length);
+      $('#progress .inner').width(answers.length+'%');
+      if( answers.length == 100 ) {
+        $('#progress .inner').addClass('complete');
+      }
+    });
+    
+
+    });
+</script>
+
+</html>
