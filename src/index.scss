@@ -55,6 +55,7 @@ a {
     border-radius: 10px;
     .inner {
       height: 100%;
+      width: 0;
       background: #009688;
       float: left;
       border-top-left-radius: 10px;
@@ -180,7 +181,7 @@ a {
   }
 }
 input[type="submit"] {
-  margin: 10px;
+  margin: 10px 50px;
   width: calc(100% - 100px);
   max-width: 1400px;
   background: #3c8013;
@@ -208,6 +209,7 @@ input[type="submit"]:hover {
   right: 0;
   background: rgba(0, 0, 0, .7);
   display: none;
+  z-index: 2;
   .result {
     position: absolute;
     top: 50px;
@@ -219,14 +221,14 @@ input[type="submit"]:hover {
     .graph {
       background: lightcyan;
       width: 60%;
-      height: 400px;
+      height: 300px;
       margin: 0 auto;
       margin-top: 100px;
       border: inset;
       .state {
         background: white;
         width: calc(12.5% - 2px);
-        height: 400px;
+        height: 100%;
         float: right;
         position: relative;
         border: 1px solid lightgrey;
